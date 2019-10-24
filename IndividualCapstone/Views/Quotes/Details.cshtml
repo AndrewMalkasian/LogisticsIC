@@ -1,0 +1,99 @@
+﻿@model IndividualCapstone.Models.CustomerQuote
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CustomerQuote</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pieces)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pieces)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dimensions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dimensions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PickupZip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PickupZip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PickupDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PickupDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PickupWindowStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PickupWindowStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PickupWindowEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PickupWindowEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryZip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryZip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryWindowStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryWindowStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryWindowEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryWindowEnd)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

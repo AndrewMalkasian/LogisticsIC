@@ -1,0 +1,88 @@
+﻿@model IEnumerable<IndividualCapstone.Models.Quote>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pieces)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th>
+       
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickupZip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickupDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickupWindowStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickupWindowEnd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryZip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryWindowStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryWindowEnd)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pieces)
+        </td>
+        <td>
+          
+        </td>
+        <td>
+           
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickupZip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickupDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickupWindowStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickupWindowEnd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryZip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryWindowStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryWindowEnd)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
