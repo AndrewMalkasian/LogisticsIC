@@ -15,6 +15,7 @@ namespace IndividualCapstone.Models
         [DataType(DataType.DateTime)]
         [Display(Name = "Delivery Date")]
         public DateTime DeliveryDate { get; set; }
+        public string StreetAddress { get; set; }
         public string DeliveryZip { get; set; }
         public string DeliveryTimeWindow { get; set; }
         //FOREIGN KEYS
@@ -27,7 +28,7 @@ namespace IndividualCapstone.Models
         }
         private List<Shipment> _Shipments;
 
-        public string PackagesSerialized
+        public string ShipmentSerialized
         {
             get { return JsonConvert.SerializeObject(_Shipments); }
             set { _Shipments = JsonConvert.DeserializeObject<List<Shipment>>(value); }

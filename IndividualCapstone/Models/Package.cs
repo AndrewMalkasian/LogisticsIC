@@ -11,6 +11,8 @@ namespace IndividualCapstone.Models
     {
         [Key]
         public int Id { get; set; }
+        [Display(Name ="Pieces")]
+        public int PieceCount { get; set; }
         public int Weight { get; set; }
         public int Length { get; set; }
         public int Width { get; set; }
@@ -18,9 +20,7 @@ namespace IndividualCapstone.Models
         public int DimensionalWeight { get; set; }
         public int DimFactor { get; set; }
 
-        [ForeignKey("Shipment")]
-        public int? ShipmentId { get; set; }
-        public Shipment Shipment { get; set; }
+      
 
     }
 }

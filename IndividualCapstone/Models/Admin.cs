@@ -12,6 +12,11 @@ namespace IndividualCapstone.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string BusinessName { get; set; }
+        public string BusinessPhoneNumber { get; set; }
+        public string StreetAddress { get; set; }
+        public string StreetAddress2 { get; set; }
+        public string ZipCode { get; set; }
         public string WorkEmail { get; set; }
     }   
 }

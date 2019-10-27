@@ -45,7 +45,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GoogleMapsApi, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GoogleMapsApi.0.78.0\lib\net40\GoogleMapsApi.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -98,9 +104,6 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -162,85 +165,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API_Keys\PrivateApiKeys.cs" />
+    <Compile Include="ApiKeys.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\DeliveryAddressesController.cs" />
+    <Compile Include="Controllers\PackageController.cs" />
+    <Compile Include="Controllers\QuotesController.cs" />
+    <Compile Include="Controllers\ShipmentsController.cs" />
+    <Compile Include="GoogleDistanceApiJson.cs" />
     <Compile Include="GoogleMapsGeoCodingApiJson.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
-    <Compile Include="Controllers\QuotesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910221531065_test.cs" />
-    <Compile Include="Migrations\201910221531065_test.Designer.cs">
-      <DependentUpon>201910221531065_test.cs</DependentUpon>
+    <Compile Include="Migrations\201910261815417_test.cs" />
+    <Compile Include="Migrations\201910261815417_test.Designer.cs">
+      <DependentUpon>201910261815417_test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910221817165_CustomerQuote.cs" />
-    <Compile Include="Migrations\201910221817165_CustomerQuote.Designer.cs">
-      <DependentUpon>201910221817165_CustomerQuote.cs</DependentUpon>
+    <Compile Include="Migrations\201910262020454_test1.cs" />
+    <Compile Include="Migrations\201910262020454_test1.Designer.cs">
+      <DependentUpon>201910262020454_test1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910221821456_test1.cs" />
-    <Compile Include="Migrations\201910221821456_test1.Designer.cs">
-      <DependentUpon>201910221821456_test1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910221842020_test11.cs" />
-    <Compile Include="Migrations\201910221842020_test11.Designer.cs">
-      <DependentUpon>201910221842020_test11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910221917227_CustomerQuote_Cost.cs" />
-    <Compile Include="Migrations\201910221917227_CustomerQuote_Cost.Designer.cs">
-      <DependentUpon>201910221917227_CustomerQuote_Cost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910221938523_lxwxh_not_dimensions.cs" />
-    <Compile Include="Migrations\201910221938523_lxwxh_not_dimensions.Designer.cs">
-      <DependentUpon>201910221938523_lxwxh_not_dimensions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910222004382_update.cs" />
-    <Compile Include="Migrations\201910222004382_update.Designer.cs">
-      <DependentUpon>201910222004382_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910222013231_correctedtypesCustomerQuote.cs" />
-    <Compile Include="Migrations\201910222013231_correctedtypesCustomerQuote.Designer.cs">
-      <DependentUpon>201910222013231_correctedtypesCustomerQuote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910231542432_customerQuote_to_Quote.cs" />
-    <Compile Include="Migrations\201910231542432_customerQuote_to_Quote.Designer.cs">
-      <DependentUpon>201910231542432_customerQuote_to_Quote.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910241410564_reformatted_Quote_to_Shipment.cs" />
-    <Compile Include="Migrations\201910241410564_reformatted_Quote_to_Shipment.Designer.cs">
-      <DependentUpon>201910241410564_reformatted_Quote_to_Shipment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910241418175_test2.cs" />
-    <Compile Include="Migrations\201910241418175_test2.Designer.cs">
-      <DependentUpon>201910241418175_test2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910241449104_test3.cs" />
-    <Compile Include="Migrations\201910241449104_test3.Designer.cs">
-      <DependentUpon>201910241449104_test3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910241458279_added_virtualToList.cs" />
-    <Compile Include="Migrations\201910241458279_added_virtualToList.Designer.cs">
-      <DependentUpon>201910241458279_added_virtualToList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910241501195_addedQuoteId_QuoteFKtoShipment.cs" />
-    <Compile Include="Migrations\201910241501195_addedQuoteId_QuoteFKtoShipment.Designer.cs">
-      <DependentUpon>201910241501195_addedQuoteId_QuoteFKtoShipment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910241503403_email_added_to_Customer.cs" />
-    <Compile Include="Migrations\201910241503403_email_added_to_Customer.Designer.cs">
-      <DependentUpon>201910241503403_email_added_to_Customer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910241633204_delAddy_PickupAddy_FK_addedToShipment.cs" />
-    <Compile Include="Migrations\201910241633204_delAddy_PickupAddy_FK_addedToShipment.Designer.cs">
-      <DependentUpon>201910241633204_delAddy_PickupAddy_FK_addedToShipment.cs</DependentUpon>
+    <Compile Include="Migrations\201910262208270_test2.cs" />
+    <Compile Include="Migrations\201910262208270_test2.Designer.cs">
+      <DependentUpon>201910262208270_test2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -252,8 +207,12 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PickupAddress.cs" />
     <Compile Include="Models\Quote.cs" />
-    <Compile Include="Models\Shipment.cs" />
+    <Compile Include="Models\ServiceArea.cs" />
+    <Compile Include="Models\ServiceLevel.cs" />
+    <Compile Include="Models\ServiceType.cs" />
     <Compile Include="Models\Package.cs" />
+    <Compile Include="Models\Shipment.cs" />
+    <Compile Include="Models\ShipmentPackageAddressDelAndPickupViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -328,6 +287,13 @@
     <Content Include="Views\Admins\Details.cshtml" />
     <Content Include="Views\Admins\Edit.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
+    <Content Include="Views\Shipments\Create.cshtml" />
+    <Content Include="Views\Shipments\Delete.cshtml" />
+    <Content Include="Views\Shipments\Details.cshtml" />
+    <Content Include="Views\Shipments\Edit.cshtml" />
+    <Content Include="Views\Shipments\Index.cshtml" />
+    <Content Include="Views\DeliveryAddresses\Create.cshtml" />
+    <Content Include="Views\Package\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,53 +312,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910221531065_test.resx">
-      <DependentUpon>201910221531065_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910261815417_test.resx">
+      <DependentUpon>201910261815417_test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910221817165_CustomerQuote.resx">
-      <DependentUpon>201910221817165_CustomerQuote.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910262020454_test1.resx">
+      <DependentUpon>201910262020454_test1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910221821456_test1.resx">
-      <DependentUpon>201910221821456_test1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910221842020_test11.resx">
-      <DependentUpon>201910221842020_test11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910221917227_CustomerQuote_Cost.resx">
-      <DependentUpon>201910221917227_CustomerQuote_Cost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910221938523_lxwxh_not_dimensions.resx">
-      <DependentUpon>201910221938523_lxwxh_not_dimensions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910222004382_update.resx">
-      <DependentUpon>201910222004382_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910222013231_correctedtypesCustomerQuote.resx">
-      <DependentUpon>201910222013231_correctedtypesCustomerQuote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910231542432_customerQuote_to_Quote.resx">
-      <DependentUpon>201910231542432_customerQuote_to_Quote.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241410564_reformatted_Quote_to_Shipment.resx">
-      <DependentUpon>201910241410564_reformatted_Quote_to_Shipment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241418175_test2.resx">
-      <DependentUpon>201910241418175_test2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241449104_test3.resx">
-      <DependentUpon>201910241449104_test3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241458279_added_virtualToList.resx">
-      <DependentUpon>201910241458279_added_virtualToList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241501195_addedQuoteId_QuoteFKtoShipment.resx">
-      <DependentUpon>201910241501195_addedQuoteId_QuoteFKtoShipment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241503403_email_added_to_Customer.resx">
-      <DependentUpon>201910241503403_email_added_to_Customer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910241633204_delAddy_PickupAddy_FK_addedToShipment.resx">
-      <DependentUpon>201910241633204_delAddy_PickupAddy_FK_addedToShipment.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910262208270_test2.resx">
+      <DependentUpon>201910262208270_test2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

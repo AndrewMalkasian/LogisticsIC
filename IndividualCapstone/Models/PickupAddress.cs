@@ -16,6 +16,7 @@ namespace IndividualCapstone.Models
         [DataType(DataType.Date)]
         [Display(Name = "Pickup Date")]
         public DateTime PickupDate { get; set; }
+        public string StreetAddress { get; set; }
         public string PickupTimeWindow { get; set; }
         //address
         [ForeignKey("Shipment")]
@@ -29,7 +30,7 @@ namespace IndividualCapstone.Models
         }
         private List<Shipment> _Shipments;
 
-        public string PackagesSerialized
+        public string ShipmentSerialized
         {
             get { return JsonConvert.SerializeObject(_Shipments); }
             set { _Shipments = JsonConvert.DeserializeObject<List<Shipment>>(value); }

@@ -13,34 +13,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Pieces)
+            @Html.DisplayNameFor(model => model.PackageCost)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Weight)
+            @Html.DisplayNameFor(model => model.PickupCost)
         </th>
         <th>
-       
+            @Html.DisplayNameFor(model => model.DeliveryCost)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PickupZip)
+            @Html.DisplayNameFor(model => model.ServiceLevel)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PickupDate)
+            @Html.DisplayNameFor(model => model.ServiceLevelCost)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PickupWindowStart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PickupWindowEnd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeliveryZip)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeliveryWindowStart)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeliveryWindowEnd)
+            @Html.DisplayNameFor(model => model.ShipmentCost)
         </th>
         <th></th>
     </tr>
@@ -48,34 +36,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Pieces)
+            @Html.DisplayFor(modelItem => item.PackageCost)
         </td>
         <td>
-          
+            @Html.DisplayFor(modelItem => item.PickupCost)
         </td>
         <td>
-           
+            @Html.DisplayFor(modelItem => item.DeliveryCost)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PickupZip)
+            @Html.DisplayFor(modelItem => item.ServiceLevel)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PickupDate)
+            @Html.DisplayFor(modelItem => item.ServiceLevelCost)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PickupWindowStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PickupWindowEnd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryZip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryWindowStart)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeliveryWindowEnd)
+            @Html.DisplayFor(modelItem => item.ShipmentCost)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

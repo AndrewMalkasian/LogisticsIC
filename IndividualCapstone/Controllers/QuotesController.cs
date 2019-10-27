@@ -10,126 +10,144 @@ using System.Web;
 using System.Web.Mvc;
 using IndividualCapstone.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.IO;
-
 
 namespace IndividualCapstone.Controllers
 {
     public class QuotesController : Controller
     {
         private ApplicationDbContext db;
+      
+        public int fuelSurcharge { get; private set; }
 
         public QuotesController()
         {
             db = new ApplicationDbContext();
+           
         }
-        // GET: CustomerQuotes
+
+        // GET: Quotes
         public ActionResult Index()
         {
             return View(db.CustomerQuotes.ToList());
         }
 
-        // GET: CustomerQuotes/Details/5
+        // GET: Quotes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Quote customerQuote = db.CustomerQuotes.Find(id);
-            if (customerQuote == null)
+            Quote quote = db.CustomerQuotes.Find(id);
+            if (quote == null)
             {
                 return HttpNotFound();
             }
-            return View(customerQuote);
+            return View(quote);
         }
 
-        // GET: CustomerQuotes/Create
+        // GET: Quotes/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create","Shipment");
         }
 
-        // POST: CustomerQuotes/Create
+        // POST: Quotes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Pieces,Weight,Dimensions,PickupZip,PickupDate,PickupWindowStart,PickupWindowEnd,DeliveryZip,DeliveryWindowStart,DeliveryWindowEnd")] Quote customerQuote)
+        
+        public ActionResult Create([Bind(Include = "Id,PackageCost,PickupCost,DeliveryCost,ServiceLevel,ServiceLevelCost,ShipmentCost")] Quote quote)
         {
             if (ModelState.IsValid)
             {
-                db.CustomerQuotes.Add(customerQuote);
-                // UpdateQuoteValue();
-
+                db.CustomerQuotes.Add(quote);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("FinalizeQuote");
             }
 
-            return View(customerQuote);
+            return View(quote);
         }
+        
+        //public ActionResult AddPickUpAddress()
+        //Public ActionResult AddDeliveryAddress()
+        //Public ActionResult AddServiceLevel()
+        //Public ActionResult AddServiceType()
 
 
+        //public ActionResult CalculateQuote()
+        //{
+        //    //TODO: goes to quote screen and gives an amount and they can choose
+        //    return 0;
+        //}
 
-        // GET: CustomerQuotes/Edit/5
+        // GET: Quotes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Quote customerQuote = db.CustomerQuotes.Find(id);
-            if (customerQuote == null)
+            Quote quote = db.CustomerQuotes.Find(id);
+            if (quote == null)
             {
                 return HttpNotFound();
             }
-            return View(customerQuote);
+            return View(quote);
         }
 
-        // POST: CustomerQuotes/Edit/5
+        // POST: Quotes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Pieces,Weight,Dimensions,PickupZip,PickupDate,PickupWindowStart,PickupWindowEnd,DeliveryZip,DeliveryWindowStart,DeliveryWindowEnd")] Quote customerQuote)
+        public ActionResult Edit([Bind(Include = "Id,PackageCost,PickupCost,DeliveryCost,ServiceLevel,ServiceLevelCost,ShipmentCost")] Quote quote)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customerQuote).State = EntityState.Modified;
-                // UpdateQuoteValue();
-
+                db.Entry(quote).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customerQuote);
+            return View(quote);
         }
 
-        // GET: CustomerQuotes/Delete/5
+        // GET: Quotes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Quote customerQuote = db.CustomerQuotes.Find(id);
-            if (customerQuote == null)
+            Quote quote = db.CustomerQuotes.Find(id);
+            if (quote == null)
             {
                 return HttpNotFound();
             }
-            return View(customerQuote);
+            return View(quote);
         }
 
-        // POST: CustomerQuotes/Delete/5
+        // POST: Quotes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Quote customerQuote = db.CustomerQuotes.Find(id);
-            db.CustomerQuotes.Remove(customerQuote);
+            Quote quote = db.CustomerQuotes.Find(id);
+            db.CustomerQuotes.Remove(quote);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        //public async string DistanceBetween(Shipment shipment)
+        //{
+        //    //take in the userinput address broken down and apply it to the origin;
+        //    var distanceInMiles = DistanceFromOriginAndDestinationsString(pickupInput, deliveryInput);
+
+
+        //pickupAddress = 
+        //string geocodedLocation = await GeocodeFromLocationToLatLongString(selectedLocation);
+        //return RedirectToAction("Create", new { latLong = geocodedLocation, locationName = selectedLocation });
 
         protected override void Dispose(bool disposing)
         {
@@ -139,45 +157,20 @@ namespace IndividualCapstone.Controllers
             }
             base.Dispose(disposing);
         }
-        public int PiecesPriceLogic()
+        public async Task<string> DistanceFromOriginAndDestinationsString(string origins, string destinations)
         {
-            
-            return 0;
-        }
-        
-        //public async int TotalQuoteAmount()
-        //{
-       
-           
-
-        //}
-        //public int WeightPriceLogic(Package package)
-        ////{
-        //    if ()
-        //        if ()
-        //        {
-        //            //estimatedWeight ? 45 : 15
-        //        }
-        //    return estimatedWeight;
-
-        //}
-        public int DimensionalWeightPriceLogic(Package package)
-        {
-          package.DimensionalWeight = package.Length * package.Width * package.Height / package.DimFactor;
-            if(package.DimensionalWeight >= package.Weight)
-            {
-                return package.DimensionalWeight;
-            }
-            else
-            {
-                return package.Weight;
-            }
-           
+            var http = new HttpClient();
+            var url = String.Format("https://maps.googleapis.com/maps/api/geocode/json?origins={0}&destinations={0}key={1}", origins, destinations, ApiKeys.GoogleApiKey);
+            var response = await http.GetAsync(url);
+            var result = await response.Content.ReadAsStringAsync();
+            var jsonData = JsonConvert.DeserializeObject<GoogleDistanceApi.Rootobject>(result);
+            var distanceBetween = jsonData.rows[0].elements[0].distance.text.ToString();
+            return distanceBetween;
         }
         public async Task<string> GeocodeFromLocationToLatLongString(string location)
         {
             var http = new HttpClient();
-            var url = String.Format("https://maps.googleapis.com/maps/api/geocode/json?address={0}&key={1}", location, Keys.GoogleApiKey);
+            var url = String.Format("https://maps.googleapis.com/maps/api/geocode/json?address={0}&key={1}", location, ApiKeys.GoogleApiKey);
             var response = await http.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
             var jsonData = JsonConvert.DeserializeObject<GoogleMapsGeoCodingApiJson.Rootobject>(result);
@@ -186,32 +179,62 @@ namespace IndividualCapstone.Controllers
             return latLong;
         }
 
-        public int ZipCodeMileagePriceLogic()
+        //public double CostForFiveServiceAreas(ServiceArea serviceArea)
+        //{
+
+        //    // var distanceFromOriginPoint;
+        //    if (serviceArea.Distance >= serviceArea.A && serviceArea.Distance < serviceArea.B)
+        //    {
+        //        serviceArea.Rate = 15;
+        //        return newQuote.ServiceAreaCost += serviceArea.Rate;
+        //    }
+        //    else if (serviceArea.Distance >= serviceArea.B && serviceArea.Distance < serviceArea.C)
+        //    {
+        //        serviceArea.Rate = 30;
+        //        return newQuote.ServiceAreaCost += serviceArea.Rate;
+        //    }
+        //    else if (serviceArea.Distance >= serviceArea.C && serviceArea.Distance < serviceArea.D)
+        //    {
+        //        serviceArea.Rate = 40;
+        //        return newQuote.ServiceAreaCost += serviceArea.Rate;
+        //    }
+        //    else if (serviceArea.Distance >= serviceArea.D && serviceArea.Distance < serviceArea.Y)
+        //    {
+        //        serviceArea.Rate = 55;
+        //        return newQuote.ServiceAreaCost += serviceArea.Rate;
+        //    }
+        //    else if (serviceArea.Distance >= serviceArea.Y)
+        //    {
+        //        serviceArea.Rate = 60;
+        //        var beyondPricing = serviceArea.Distance * newQuote.FuelSurcharge + serviceArea.Rate;
+        //        //should probably these ints into variable
+        //        return beyondPricing;
+        //    }
+        //    else
+        //    {
+        //        return 0;
+        //    }
+        //    // starting point if NOT sameday = makariosAddress
+
+
+        //}
+        public float WeightVsDimensionalWeight(Package package)
         {
-            if (true)
+            package.DimensionalWeight = package.Length * package.Width * package.Height / package.DimFactor;
+            if (package.DimensionalWeight >= package.Weight)
             {
-
+                return package.DimensionalWeight;
             }
-            return 0;
+            else
+            {
+                return package.Weight;
+            }
         }
-
-        public int PickupTimePriceLogic()
-        {
-            
-            return 0;
-        }
-        public int PickupDatePriceLogic()
-        {
-            return 0;
-        }
-        public int DeliveryDatePriceLogic()
-        {
-            return 0;
-        }
-        public int DeliveryTimePriceLogic()
-        {
-            return 0;
-        }
-
     }
 }
+      
+      
+
+
+    
+

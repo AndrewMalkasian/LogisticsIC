@@ -1,4 +1,4 @@
-﻿@model IndividualCapstone.Models.CustomerQuote
+﻿@model IndividualCapstone.Models.Quote
 
 @{
     ViewBag.Title = "Details";
@@ -8,87 +8,55 @@
 <h2>Details</h2>
 
 <div>
-    <h4>CustomerQuote</h4>
+    <h4>Quote</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Pieces)
+            @Html.DisplayNameFor(model => model.PackageCost)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Pieces)
+            @Html.DisplayFor(model => model.PackageCost)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Weight)
+            @Html.DisplayNameFor(model => model.PickupCost)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Weight)
+            @Html.DisplayFor(model => model.PickupCost)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Dimensions)
+            @Html.DisplayNameFor(model => model.DeliveryCost)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Dimensions)
+            @Html.DisplayFor(model => model.DeliveryCost)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PickupZip)
+            @Html.DisplayNameFor(model => model.ServiceLevel)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PickupZip)
+            @Html.DisplayFor(model => model.ServiceLevel)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PickupDate)
+            @Html.DisplayNameFor(model => model.ServiceLevelCost)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PickupDate)
+            @Html.DisplayFor(model => model.ServiceLevelCost)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PickupWindowStart)
+            @Html.DisplayNameFor(model => model.ShipmentCost)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PickupWindowStart)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PickupWindowEnd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PickupWindowEnd)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeliveryZip)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeliveryZip)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeliveryWindowStart)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeliveryWindowStart)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeliveryWindowEnd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeliveryWindowEnd)
+            @Html.DisplayFor(model => model.ShipmentCost)
         </dd>
 
     </dl>
