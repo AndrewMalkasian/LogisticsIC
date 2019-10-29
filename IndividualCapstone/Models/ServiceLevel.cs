@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace IndividualCapstone.Models
 {
@@ -12,6 +13,8 @@ namespace IndividualCapstone.Models
         public int Id { get; set; }
         public string TypeOfServiceLevel { get; set; }
         public double CostOfServiceLevel { get; set; }
+
+    
 
 
     }

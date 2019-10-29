@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 
 namespace IndividualCapstone
 {
     public class GoogleMapsGeoCodingApiJson
     {
-
+        
         public class Rootobject
         {
             public Result[] results { get; set; }
@@ -37,29 +38,29 @@ namespace IndividualCapstone
             public float lng { get; set; }
         }
 
-        //public class Viewport
-        //{
-        //    public Northeast northeast { get; set; }
-        //    public Southwest southwest { get; set; }
-        //}
+        public class Viewport
+        {
+            public Northeast northeast { get; set; }
+            public Southwest southwest { get; set; }
+        }
 
-        //public class Northeast
-        //{
-        //    public float lat { get; set; }
-        //    public float lng { get; set; }
-        //}
+        public class Northeast
+        {
+            public float lat { get; set; }
+            public float lng { get; set; }
+        }
 
-        //public class Southwest
-        //{
-        //    public float lat { get; set; }
-        //    public float lng { get; set; }
-        //}
+        public class Southwest
+        {
+            public float lat { get; set; }
+            public float lng { get; set; }
+        }
 
-        //public class Plus_Code
-        //{
-        //    public string compound_code { get; set; }
-        //    public string global_code { get; set; }
-        //}
+        public class Plus_Code
+        {
+            public string compound_code { get; set; }
+            public string global_code { get; set; }
+        }
 
         public class Address_Components
         {

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -20,6 +21,7 @@ namespace IndividualCapstone.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
@@ -28,6 +30,8 @@ namespace IndividualCapstone.Models
         public DbSet<Package> Packages { get; set; }
         public DbSet<DeliveryAddress> DeliveryAddresses { get; set; }
         public DbSet<PickupAddress> PickupAddresses { get; set; }
+        public DbSet<ServiceType> ServiceTypes { get; set; }
+        public DbSet<ServiceLevel> ServiceLevels { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

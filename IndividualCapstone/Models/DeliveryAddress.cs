@@ -21,18 +21,6 @@ namespace IndividualCapstone.Models
         //FOREIGN KEYS
 
    // ask about this< if public Shipment Ship {get; set;} is needed
-        public virtual List<Shipment> Shipments
-        {
-            get { return _Shipments; }
-            set { _Shipments = value; }
-        }
-        private List<Shipment> _Shipments;
-
-        public string ShipmentSerialized
-        {
-            get { return JsonConvert.SerializeObject(_Shipments); }
-            set { _Shipments = JsonConvert.DeserializeObject<List<Shipment>>(value); }
-        }
-
+        public virtual List<Shipment> Shipments { get; set; }
     }
 }

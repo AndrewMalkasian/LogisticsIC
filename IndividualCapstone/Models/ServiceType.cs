@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace IndividualCapstone.Models
 {
@@ -10,7 +11,8 @@ namespace IndividualCapstone.Models
     {
         [Key]
         public int Id { get; set; }
-        public string NameOfServiceType { get; set; }
-        public double CostOfServiceType { get; set; }
+        public string NameOfService { get; set; }
+        public double CostOfService { get; set; }
+      
     }
 }

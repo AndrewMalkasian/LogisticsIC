@@ -7,19 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using IndividualCapstone.Models;
+using Microsoft.AspNet.Identity;
 
 namespace IndividualCapstone.Controllers
 {
     public class AdminsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private ApplicationDbContext db;
+        public AdminsController()
+        {
+            db = new ApplicationDbContext();
+        }
+      
         // GET: Admins
         public ActionResult Index()
         {
-            return View(db.Admins.ToList());
+            var adminId = User.Identity.GetUserId();
+            Admin admin = db.Admins.Where(a => a.UserId == adminId).SingleOrDefault();
+            var listOfCustomers = db.Customers.Select(c => c.Id);
+                return View(listOfCustomers);
         }
-
+        
         // GET: Admins/Details/5
         public ActionResult Details(int? id)
         {
@@ -46,21 +54,39 @@ namespace IndividualCapstone.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,WorkEmail")] Admin admin)
+        // STILL NEEDS LOVE
+        public ActionResult CreateAdmin(Admin admin)
         {
-            if (ModelState.IsValid)
-            {
+           
                 db.Admins.Add(admin);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(admin);
+            return RedirectToAction("Index");
+           
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        // STILL NEEDS LOVE
+        public ActionResult CreateEmployee(Employee employee)
+        {
+            db.Employees.Add(employee);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //STILL NEEDS LOVE
+        public ActionResult CreateCustomer (Customer customer)
+        {
+            db.Customers.Add(customer);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        // GET: Admins/Edit/5
-        public ActionResult Edit(int? id)
-        {
+        // GET: Admins/EditAdmin/5
+        public ActionResult EditAdmin(int? id)
+
+        { 
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -71,6 +97,8 @@ namespace IndividualCapstone.Controllers
                 return HttpNotFound();
             }
             return View(admin);
+
+
         }
 
         // POST: Admins/Edit/5
@@ -78,7 +106,7 @@ namespace IndividualCapstone.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,WorkEmail")] Admin admin)
+        public ActionResult EditAdmin([Bind(Include = "Id,FirstName,LastName,WorkEmail")] Admin admin)
         {
             if (ModelState.IsValid)
             {

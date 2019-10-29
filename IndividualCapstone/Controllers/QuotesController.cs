@@ -1,33 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using IndividualCapstone.Models;
+using Newtonsoft.Json;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using IndividualCapstone.Models;
-using Newtonsoft.Json;
+using System.Web.Script.Serialization;
 
 namespace IndividualCapstone.Controllers
 {
     public class QuotesController : Controller
     {
         private ApplicationDbContext db;
-      
+        public static T FromJSON<T>(string json)
+        {
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+
+            return jss.Deserialize<T>(json);
+        }
+
         public int fuelSurcharge { get; private set; }
 
         public QuotesController()
         {
             db = new ApplicationDbContext();
-           
+
         }
 
         // GET: Quotes
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+           
             return View(db.CustomerQuotes.ToList());
         }
 
@@ -49,7 +54,7 @@ namespace IndividualCapstone.Controllers
         // GET: Quotes/Create
         public ActionResult Create()
         {
-            return View("Create","Shipment");
+            return View("Create", "Shipment");
         }
 
         // POST: Quotes/Create
@@ -57,7 +62,7 @@ namespace IndividualCapstone.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
+
         public ActionResult Create([Bind(Include = "Id,PackageCost,PickupCost,DeliveryCost,ServiceLevel,ServiceLevelCost,ShipmentCost")] Quote quote)
         {
             if (ModelState.IsValid)
@@ -69,7 +74,7 @@ namespace IndividualCapstone.Controllers
 
             return View(quote);
         }
-        
+
         //public ActionResult AddPickUpAddress()
         //Public ActionResult AddDeliveryAddress()
         //Public ActionResult AddServiceLevel()
@@ -157,27 +162,56 @@ namespace IndividualCapstone.Controllers
             }
             base.Dispose(disposing);
         }
-        public async Task<string> DistanceFromOriginAndDestinationsString(string origins, string destinations)
+        
+        public float WeightVsDimensionalWeight(Package package)
         {
-            var http = new HttpClient();
-            var url = String.Format("https://maps.googleapis.com/maps/api/geocode/json?origins={0}&destinations={0}key={1}", origins, destinations, ApiKeys.GoogleApiKey);
-            var response = await http.GetAsync(url);
-            var result = await response.Content.ReadAsStringAsync();
-            var jsonData = JsonConvert.DeserializeObject<GoogleDistanceApi.Rootobject>(result);
-            var distanceBetween = jsonData.rows[0].elements[0].distance.text.ToString();
-            return distanceBetween;
+            package.DimensionalWeight = package.Length * package.Width * package.Height / package.DimFactor;
+            if (package.DimensionalWeight >= package.Weight)
+            {
+                return package.DimensionalWeight;
+            }
+            else
+            {
+                return package.Weight;
+            }
         }
-        public async Task<string> GeocodeFromLocationToLatLongString(string location)
-        {
-            var http = new HttpClient();
-            var url = String.Format("https://maps.googleapis.com/maps/api/geocode/json?address={0}&key={1}", location, ApiKeys.GoogleApiKey);
-            var response = await http.GetAsync(url);
-            var result = await response.Content.ReadAsStringAsync();
-            var jsonData = JsonConvert.DeserializeObject<GoogleMapsGeoCodingApiJson.Rootobject>(result);
-            var latLong = jsonData.results[0].geometry.location.lat.ToString() + "," + jsonData.results[0].geometry.location.lng.ToString();
+    }
+        //public static double GetTwoAddresses(string address1, string address2)
+        //{
 
-            return latLong;
-        }
+        //    //make jason requests to google api
+        //    string json1 = WebRequestJson(
+        //        string.Format("https://maps.googleapis.com/maps/api/geocode/json?address={0}&sensor=false", address1)
+        //        );
+        //    string json2 = WebRequestJson(
+        //        string.Format("https://maps.googleapis.com/maps/api/geocode/json?address={0}&sensor=false", address2)
+        //        );
+
+        //    //deserialize json to GeocodeResponse object
+        //    var loc1 = FromJSON<GoogleMapsGeoCodingApiJson>(json1);
+        //    var loc2 = FromJSON<GoogleMapsGeoCodingApiJson>(json2);
+
+        //    //check is response is ok
+        //    if (loc1.status != "OK" || loc2.Status != "OK") { return -1; }
+
+        //    //check if only one location found for each address
+        //    //if (loc1.Results.Count > 1 || loc2.Results.Count > 1) { return -2; }
+
+        //    //copy coordinate values
+        //    var pos1 = new Location();
+        //    {
+        //        var Latitude = loc1.geometry.Location.Lat,
+        //         Longitude = loc1.results.First().Geometry.Location.Lng
+        //    };
+
+        //    {
+        //        Latitude = loc2.Results.First().Geometry.Location.Lat,
+        //        Longitude = loc2.Results.First().Geometry.Location.Lng
+        //    };
+
+        //    //return distance in unit
+        //    return CalculateDistance(pos1, pos2, unit);
+        //}
 
         //public double CostForFiveServiceAreas(ServiceArea serviceArea)
         //{
@@ -218,19 +252,7 @@ namespace IndividualCapstone.Controllers
 
 
         //}
-        public float WeightVsDimensionalWeight(Package package)
-        {
-            package.DimensionalWeight = package.Length * package.Width * package.Height / package.DimFactor;
-            if (package.DimensionalWeight >= package.Weight)
-            {
-                return package.DimensionalWeight;
-            }
-            else
-            {
-                return package.Weight;
-            }
-        }
-    }
+       
 }
       
       
