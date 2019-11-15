@@ -25,11 +25,13 @@ namespace IndividualCapstone.Models
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Quote> CustomerQuotes { get; set; }
+        public DbSet<Quote> Quotes { get; set; }
         public DbSet<Shipment> Shipments { get; set; }
         public DbSet<Package> Packages { get; set; }
         public DbSet<DeliveryAddress> DeliveryAddresses { get; set; }
         public DbSet<PickupAddress> PickupAddresses { get; set; }
+        public DbSet<PickupArea> PickupAreas { get; set; }
+        public DbSet<DeliveryArea> DeliveryAreas { get; set; }
         public DbSet<ServiceType> ServiceTypes { get; set; }
         public DbSet<ServiceLevel> ServiceLevels { get; set; }
         public ApplicationDbContext()

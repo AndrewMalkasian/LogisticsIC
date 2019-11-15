@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Script.Serialization;
 
@@ -9,13 +12,35 @@ namespace IndividualCapstone
     public class GoogleMapsGeoCodingApiJson
     {
         
-        public class Rootobject
+        public class RootObject
         {
+
             public Result[] results { get; set; }
             public string status { get; set; }
         }
+        //public static RootObject GetLatLongByAddress(string address)
+        //{
+        //    RootObject root = new RootObject();
 
-        public class Result
+        //    string url = string.Format( "http://maps.googleapis.com/maps/api/geocode/json?address={0}&sensor=true_or_false", address);
+        //    var req = (HttpWebRequest)WebRequest.Create(url);
+
+        //    var res = (HttpWebResponse)req.GetResponse();
+
+        //    using (var streamreader = new StreamReader(res.GetResponseStream()))
+        //    {
+        //        var result = streamreader.ReadToEnd();
+
+        //        if (!string.IsNullOrWhiteSpace(result))
+        //        {
+        //            root = JsonConvert.DeserializeObject<RootObject>(result);
+        //        }
+        //    }
+        //    return root;
+
+
+        //}
+    public class Result
         {
             public Address_Components[] address_components { get; set; }
             public string formatted_address { get; set; }
@@ -68,6 +93,7 @@ namespace IndividualCapstone
             public string short_name { get; set; }
             public string[] types { get; set; }
         }
+       
 
     }
 }

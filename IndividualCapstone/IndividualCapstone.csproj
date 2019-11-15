@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.9.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.9.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis, Version=1.41.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>packages\Google.Apis.1.41.1\lib\net45\Google.Apis.dll</HintPath>
     </Reference>
@@ -64,6 +67,15 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.IO.Packaging.4.5.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -122,6 +134,7 @@
       <Private>True</Private>
       <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
@@ -180,26 +193,29 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Migrations\201910291551435_reloadingNuke.cs" />
-    <Compile Include="Migrations\201910291551435_reloadingNuke.Designer.cs">
-      <DependentUpon>201910291551435_reloadingNuke.cs</DependentUpon>
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="GooglePlacesApiJson.cs" />
+    <Compile Include="IShipment.cs" />
+    <Compile Include="Migrations\201911041519120_test.cs" />
+    <Compile Include="Migrations\201911041519120_test.Designer.cs">
+      <DependentUpon>201911041519120_test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910292015545_test.cs" />
-    <Compile Include="Migrations\201910292015545_test.Designer.cs">
-      <DependentUpon>201910292015545_test.cs</DependentUpon>
+    <Compile Include="Migrations\201911121958525_test1.cs" />
+    <Compile Include="Migrations\201911121958525_test1.Designer.cs">
+      <DependentUpon>201911121958525_test1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminEmployeeCustomerViewModel.cs" />
     <Compile Include="Controllers\DeliveryAddressesController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
-    <Compile Include="Controllers\QuotesController.cs" />
+    <Compile Include="Controllers\QuoteController.cs" />
     <Compile Include="Controllers\ServiceLevelController.cs" />
     <Compile Include="Controllers\ShipmentsController.cs" />
     <Compile Include="GoogleDistanceApiJson.cs" />
     <Compile Include="GoogleMapsGeoCodingApiJson.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminsController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -209,17 +225,27 @@
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DeliveryAddress.cs" />
+    <Compile Include="Models\DeliveryArea.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PickupAddress.cs" />
     <Compile Include="Models\Quote.cs" />
-    <Compile Include="Models\ServiceArea.cs" />
+    <Compile Include="Models\PickupArea.cs" />
     <Compile Include="Models\ServiceLevel.cs" />
     <Compile Include="Models\ServiceType.cs" />
     <Compile Include="Models\Package.cs" />
     <Compile Include="Models\Shipment.cs" />
+    <Compile Include="Models\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Models\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PlacesApiType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShipmentJsonData.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TestGeo\Coordinates.cs" />
   </ItemGroup>
@@ -232,6 +258,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\WebForm1.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -283,10 +310,8 @@
     <Content Include="Views\Customers\Delete.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Customers\Edit.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Quotes\Create.cshtml" />
     <Content Include="Views\Quotes\Delete.cshtml" />
-    <Content Include="Views\Quotes\Details.cshtml" />
     <Content Include="Views\Quotes\Edit.cshtml" />
     <Content Include="Views\Quotes\Index.cshtml" />
     <Content Include="Views\Admins\Create.cshtml" />
@@ -295,16 +320,15 @@
     <Content Include="Views\Admins\Edit.cshtml" />
     <Content Include="Views\Admins\Index.cshtml" />
     <Content Include="Views\Shipments\Create.cshtml" />
-    <Content Include="Views\Shipments\Delete.cshtml" />
-    <Content Include="Views\Shipments\Details.cshtml" />
-    <Content Include="Views\Shipments\Edit.cshtml" />
-    <Content Include="Views\Shipments\Index.cshtml" />
     <Content Include="Views\DeliveryAddresses\Create.cshtml" />
     <Content Include="Views\Package\Create.cshtml" />
     <Content Include="Views\ServiceLevel\Create.cshtml" />
+    <Content Include="Views\Shipments\Index.cshtml" />
+    <Content Include="Views\Shipments\Mapping.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Employee\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -320,11 +344,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910291551435_reloadingNuke.resx">
-      <DependentUpon>201910291551435_reloadingNuke.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911041519120_test.resx">
+      <DependentUpon>201911041519120_test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910292015545_test.resx">
-      <DependentUpon>201910292015545_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911121958525_test1.resx">
+      <DependentUpon>201911121958525_test1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

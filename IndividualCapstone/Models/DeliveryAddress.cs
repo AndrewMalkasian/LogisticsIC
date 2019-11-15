@@ -15,12 +15,16 @@ namespace IndividualCapstone.Models
         [DataType(DataType.DateTime)]
         [Display(Name = "Delivery Date")]
         public DateTime DeliveryDate { get; set; }
+        [Display(Name = "Street Address")]
         public string StreetAddress { get; set; }
+        [Display(Name = "Delivery Zip")]
         public string DeliveryZip { get; set; }
         public string DeliveryTimeWindow { get; set; }
+        public string AddressLatLong { get; set; }
+        [Display(Name ="Add To Route?")]
+        public bool AddToRoute { get; set; }
         //FOREIGN KEYS
-
-   // ask about this< if public Shipment Ship {get; set;} is needed
+        //
         public virtual List<Shipment> Shipments { get; set; }
     }
 }

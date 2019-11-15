@@ -98,7 +98,6 @@ C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\Individu
 C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\obj\Debug\IndividualCapstone.csprojAssemblyReference.cache
 C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\obj\Debug\IndividualCapstone.csproj.CoreCompileInputs.cache
 C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\obj\Debug\IndividualCapstone.csproj.CopyComplete
 C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\obj\Debug\IndividualCapstone.dll
@@ -111,6 +110,10 @@ C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\Individu
 C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\bin\Google.Apis.xml
 C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\bin\Google.Apis.Core.pdb
 C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\bin\Google.Apis.Core.xml
-C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\obj\Debug\IndividualCapstone.Migrations.reloadingNuke.resources
-C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\obj\Debug\IndividualCapstone.csproj.GenerateResource.cache
+C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\obj\Debug\IndividualCapstone.csprojAssemblyReference.cache
 C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\obj\Debug\IndividualCapstone.Migrations.test.resources
+C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\obj\Debug\IndividualCapstone.csproj.GenerateResource.cache
+C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\obj\Debug\IndividualCapstone.Migrations.test1.resources
+C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\bin\DocumentFormat.OpenXml.dll
+C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\bin\System.IO.Packaging.dll
+C:\Users\Andrew Malkasian\Desktop\devCodeCamp\dCC_CS\IndividualCapstone\IndividualCapstone\bin\DocumentFormat.OpenXml.xml

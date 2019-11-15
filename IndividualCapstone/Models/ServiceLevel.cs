@@ -12,7 +12,7 @@ namespace IndividualCapstone.Models
         [Key]
         public int Id { get; set; }
         public string TypeOfServiceLevel { get; set; }
-        public double CostOfServiceLevel { get; set; }
+        public decimal CostOfServiceLevel { get; set; }
 
     
 

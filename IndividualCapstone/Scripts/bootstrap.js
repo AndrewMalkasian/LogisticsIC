@@ -25,6 +25,7 @@ if (typeof jQuery === 'undefined') {
  * ======================================================================== */
 
 
+
 +function ($) {
   'use strict';
 
@@ -117,6 +118,7 @@ if (typeof jQuery === 'undefined') {
     if (!$parent.length) {
       $parent = $this.closest('.alert')
     }
+
 
     $parent.trigger(e = $.Event('close.bs.alert'))
 
@@ -285,7 +287,7 @@ if (typeof jQuery === 'undefined') {
       var $btn = $(e.target).closest('.btn')
       Plugin.call($btn, 'toggle')
       if (!($(e.target).is('input[type="radio"], input[type="checkbox"]'))) {
-        // Prevent double click on radios, and the double selections (so cancellation) on checkboxes
+        // Prevent decmial click on radios, and the decmial selections (so cancellation) on checkboxes
         e.preventDefault()
         // The target component still receive the focus
         if ($btn.is('input,button')) $btn.trigger('focus')
