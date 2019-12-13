@@ -43,5 +43,6 @@ namespace IndividualCapstone.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

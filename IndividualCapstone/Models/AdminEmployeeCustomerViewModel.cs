@@ -12,8 +12,8 @@ namespace IndividualCapstone.Controllers
     {
         [Key]
         public int Id { get; set; }
-        public Admin Admins { get; set; }
-        public Employee Employees { get; set; }
-        public Customer Customers { get; set; }
+        public List<Admin> Admins { get; set; }
+        public List<Employee> Employees { get; set; }
+        public List<Customer> Customers { get; set; }
     }
 }

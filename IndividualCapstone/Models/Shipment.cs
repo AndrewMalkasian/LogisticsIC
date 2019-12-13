@@ -52,6 +52,7 @@ namespace IndividualCapstone.Models
         public string AirportLatLong { get; set; }
         
        public decimal? ShipmentCost { get; set; }
+        public bool AddToRoute { get; set; }
         // [NotMapped]
         public IEnumerable<ServiceLevel> LevelOfServiceList { get; set; }
         public IEnumerable<ServiceType> ServiceTypeList { get; set; }

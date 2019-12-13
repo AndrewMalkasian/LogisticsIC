@@ -24,13 +24,13 @@ namespace IndividualCapstone.Controllers
         }
 
         // GET: Quotes
-        public async Task<ActionResult> Index()
-        {
-            var shipment = db.Shipments.FirstOrDefault();
-            //await DistanceFromPickupBackToHubString(shipment);
-            return View();
-            //shipments.ToList()
-        }
+        //public async Task<ActionResult> Index()
+        //{
+        //    var shipment = db.Shipments.FirstOrDefault();
+        //    //await DistanceFromPickupBackToHubString(shipment);
+        //    return View();
+        //    //shipments.ToList()
+        //}
 
         // GET: Quotes/Details/5
         public ActionResult Details(int? id)

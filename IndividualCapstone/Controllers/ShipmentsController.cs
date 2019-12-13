@@ -1,5 +1,7 @@
 ﻿using IndividualCapstone.Models;
 using Newtonsoft.Json;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,6 +11,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Mail;
 
 namespace IndividualCapstone.Controllers
 {
@@ -34,39 +37,48 @@ namespace IndividualCapstone.Controllers
             return View(listOfShipments);
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Index(List<Shipment> listOfShipments)
         {
-            if (ModelState.IsValid)
+
+            for (int i = listOfShipments.Count - 1; i >= 0 ; i--)
             {
-                foreach (var shipment in listOfShipments)
+                var shipment = listOfShipments[i];
+
+                if (shipment.AddToRoute == false)
                 {
-                    if (shipment.DeliveryAddress.AddToRoute == false)
-                    {
-                        listOfShipments.Remove(shipment);
-                    }
-                }
-            return RedirectToAction("Mapping","Shipments", listOfShipments);
+                    listOfShipments.Remove(shipment);
+                }       
+            }
+            
+
+            var fromAddress = new MailAddress("Dmalkasian1206@gmail.com", "Andrew");
+            var toAddress = new MailAddress("Dmalkasian1206@gmail.com", "To Name");
+            const string fromPassword = "Captalmo1!";
+            const string subject = "Delivery";
+            const string body = "Your shipment is going to be delivered";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
             }
 
-            return View();
+            return View("Mapping", listOfShipments);
         }
-       
-        [HttpGet]
-        public ActionResult AddToLatLongList(List<Shipment> listOfShipments)
-        {
 
-            foreach (var shipment in listOfShipments)
-            {
-                if (shipment.DeliveryAddress.AddToRoute == true)
-                {
-                    listOfShipments.Add(shipment);
-                }
-
-            }
-            return View(listOfShipments);
-        }
-        [HttpGet]
+        
         public ActionResult Mapping (List<Shipment> listOfShipments)
         {
 
@@ -85,7 +97,7 @@ namespace IndividualCapstone.Controllers
             if (shipment == null)
             {
                 return HttpNotFound();
-            }
+            } 
             return View(shipment);
         }
 
@@ -204,7 +216,7 @@ namespace IndividualCapstone.Controllers
 
         }
         //Getting the nearest airport near the latlong delivery address
-        public async Task<Shipment> GettingNearestAirportLatLong (Shipment shipment) //#2
+        public async Task<Shipment> GettingNearestAirportLatLong(Shipment shipment) //#2
         {
             HttpClient http = new HttpClient();        
             string type = "Airport";
